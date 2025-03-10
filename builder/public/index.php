@@ -1,7 +1,14 @@
 <?php
+
+use App\MySQLQueryBuilder;
+
 require('../vendor/autoload.php');
 
+$mysqlQuery = (new MySqlQueryBuilder())
+    ->select(["id", "name"])
+    ->from("users")
+    ->where("age > 18")
+    ->where("status = 'active'")
+    ->getQuery();
 
-# TODO: Creer un QueryBuilder
-# Ecrire une requête en chainant des methodes
-# Afficher la requête
+echo $mysqlQuery;
